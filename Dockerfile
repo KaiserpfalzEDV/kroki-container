@@ -8,12 +8,12 @@ RUN apt-get update && apt-get install -y git \
 
 # Klone die komplette PlantUML stdlib
 RUN git clone https://github.com/plantuml/plantuml-stdlib.git /usr/local/plantuml-stdlib \
- && mv /usr/local/plantuml-stdlib/stdlib /usr/local/stdlib \
- && rm -rf /usr/local/plantuml-stdlib \
- && mv /usr/local/stdlib /usr/local/plantuml-stdlib
+ && mv /usr/local/plantuml-stdlib/stdlib /usr/share/plantuml \
+ && cp /usr/share/plantuml /usr/share/plantuml/stdlib \
+ && rm -rf /usr/local/plantuml-stdlib
 
 # Setze die PLANTUML_INCLUDE-Umgebungsvariable, um Kroki PlantUML mitzuteilen, wo die stdlib ist
-ENV KROKI_PLANTUML_INCLUDE_PATH="/usr/local/plantuml-stdlib"
+ENV KROKI_PLANTUML_INCLUDE_PATH="/usr/share/plantuml"
 ENV KROKI_PLANTUML_ALLOW_INCLUDE="true"
 
 USER 1000
