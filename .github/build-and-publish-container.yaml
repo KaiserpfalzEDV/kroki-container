@@ -1,4 +1,6 @@
 ---
+# Disabled. Will be build by quay.io.
+
 name: Create kroki container with plantuml stdlib
 
 # Configures this workflow to run every time a change is pushed to the branch called `release`.
