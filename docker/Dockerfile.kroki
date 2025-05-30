@@ -1,0 +1,19 @@
+# Starte mit dem offiziellen Kroki-Image
+FROM yuzutech/kroki:latest
+
+# Installiere git, um die stdlib zu klonen
+RUN apt-get update && apt-get install -y git \
+ && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Klone die komplette PlantUML stdlib
+RUN git clone https://github.com/plantuml/plantuml-stdlib.git /usr/local/plantuml-stdlib
+
+# Setze die PLANTUML_INCLUDE-Umgebungsvariable, um Kroki PlantUML mitzuteilen, wo die stdlib ist
+ENV PLANTUML_INCLUDE="/usr/local/plantuml-stdlib/stdlib"
+
+USER 1000
+# (Optional) Exponiere den Kroki-Port
+#EXPOSE 8000
+
+# Starte Kroki
+#CMD ["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "/opt/kroki/kroki.jar"]
