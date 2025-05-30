@@ -3,7 +3,7 @@ FROM docker.io/yuzutech/kroki:latest
 
 USER 0
 # Installiere git, um die stdlib zu klonen
-RUN apt-get update && apt-get install -y git \
+RUN apt-get update && apt-get upgrade -y && apt-get install -y git \
  && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Klone die komplette PlantUML stdlib
