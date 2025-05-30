@@ -8,8 +8,8 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y git \
 
 # Klone die komplette PlantUML stdlib
 RUN git clone https://github.com/plantuml/plantuml-stdlib.git /usr/local/plantuml-stdlib \
+ && mkdir -p /usr/share/plantuml \
  && mv /usr/local/plantuml-stdlib/stdlib /usr/share/plantuml \
- && cp /usr/share/plantuml /usr/share/plantuml/stdlib \
  && rm -rf /usr/local/plantuml-stdlib
 
 # Setze die PLANTUML_INCLUDE-Umgebungsvariable, um Kroki PlantUML mitzuteilen, wo die stdlib ist
