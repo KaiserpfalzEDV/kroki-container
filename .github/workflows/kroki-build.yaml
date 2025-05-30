@@ -22,7 +22,7 @@ env:
 
 jobs:
   publish-quay:
-    name: Create and Publish OCI Container
+    name: Create and Publish kroki Container
     runs-on: ubuntu-latest
     # Sets the permissions granted to the `GITHUB_TOKEN` for the actions in this job.
     permissions:
@@ -38,16 +38,11 @@ jobs:
           username: ${{ secrets.QUAY_ORG_USER }}
           password: ${{ secrets.QUAY_ORG_TOKEN }}
       
-      - name: Set Release version env variable
-        run: |
-          echo "RELEASE_VERSION=latest" >> $GITHUB_ENV
-      
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: docker/Dockerfile.kroki
           platforms: linux/amd64
           push: true
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME}}:${{ env.RELEASE_VERSION }}
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME}}:latest
           outputs: type=image,name=target
