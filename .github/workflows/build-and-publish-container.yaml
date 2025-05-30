@@ -18,7 +18,7 @@ on:
 # Defines two custom environment variables for the workflow. These are used for the Container registry users, and a name for the Docker image that this workflow builds.
 env:
   REGISTRY: quay.io
-  IMAGE_NAME: klenkes74/kroki
+  IMAGE_NAME: kaiserpfalzedv/kroki
 
 jobs:
   publish-quay:
@@ -33,6 +33,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
       - name: Login to Quay.io
         uses: docker/login-action@v3
         with:
